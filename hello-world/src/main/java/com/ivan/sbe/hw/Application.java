@@ -1,4 +1,4 @@
-package com.ivan.springbootexamples.helloworld;
+package com.ivan.sbe.hw;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

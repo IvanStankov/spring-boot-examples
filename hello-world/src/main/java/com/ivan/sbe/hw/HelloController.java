@@ -1,4 +1,4 @@
-package com.ivan.springbootexamples.helloworld;
+package com.ivan.sbe.hw;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
