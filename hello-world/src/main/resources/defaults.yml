@@ -1,0 +1,11 @@
+com:
+  ivan:
+    hw:
+      name: Ivan
+      random:
+        int: ${random.int}
+        long: ${random.long}
+        secret: ${random.value}
+        uuid: ${random.uuid}
+        less.than.20: ${random.int(20)}
+        range.300.400: ${random.int[300,400]}
