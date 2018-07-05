@@ -1,4 +1,17 @@
-zuul.routes:
-  currency.url: http://localhost:8001
-  forex.url: http://localhost:8010
-server.port: 8050
+spring.application.name: zuul
+server.port: 8762
+eurika:
+  instance.preferIfAddress: true
+  serviceurl.defaultzone: http://localhost:8761/eurika/
+  client:
+    registerWithEurika: true
+    fetchRegistry: true
+zuul:
+#  prefix: /api - common prefix for all api
+  routes:
+    forex:
+      path: /forex/**
+      serviceId: forex-service
+    currency:
+      path: /currency/**
+      serviceId: currency-conversion-service

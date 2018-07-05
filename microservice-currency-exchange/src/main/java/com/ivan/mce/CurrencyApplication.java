@@ -8,10 +8,10 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableFeignClients("com.ivan.mce.service")
 @EnableDiscoveryClient
-public class Application {
+public class CurrencyApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(CurrencyApplication.class, args);
     }
 
 }
