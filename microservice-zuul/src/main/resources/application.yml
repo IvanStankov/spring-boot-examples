@@ -1,0 +1,4 @@
+zuul.routes:
+  currency.url: http://localhost:8001
+  forex.url: http://localhost:8010
+server.port: 8050

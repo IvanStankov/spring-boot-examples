@@ -4,4 +4,5 @@ include 'web-data-jpa'
 include 'microservice-currency-exchange'
 include 'microservice-forex'
 include 'microservice-eurika'
+include 'microservice-zuul'
 
