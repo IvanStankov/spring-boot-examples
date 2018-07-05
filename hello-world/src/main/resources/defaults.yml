@@ -1,11 +1,8 @@
-com:
-  ivan:
-    hw:
-      name: Ivan
-      random:
-        int: ${random.int}
-        long: ${random.long}
-        secret: ${random.value}
-        uuid: ${random.uuid}
-        less.than.20: ${random.int(20)}
-        range.300.400: ${random.int[300,400]}
+com.ivan.hw.name: Ivan
+com.ivan.hw.random:
+com.ivan.hw.int: ${random.int}
+com.ivan.hw.long: ${random.long}
+com.ivan.hw.secret: ${random.value}
+com.ivan.hw.uuid: ${random.uuid}
+com.ivan.hw.less.than.20: ${random.int(20)}
+com.ivan.hw.range.300.400: ${random.int[300,400]}
