@@ -1,15 +1,12 @@
 package com.ivan.mce.controller;
 
-import com.ivan.mce.service.ForexServiceProxy;
+import com.ivan.mce.proxy.ForexServiceProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 public class ConversionController {

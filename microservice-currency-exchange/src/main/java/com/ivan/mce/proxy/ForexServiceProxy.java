@@ -1,4 +1,4 @@
-package com.ivan.mce.service;
+package com.ivan.mce.proxy;
 
 import com.ivan.mce.controller.ExchangeValue;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
