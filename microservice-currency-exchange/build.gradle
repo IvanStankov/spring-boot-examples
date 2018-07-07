@@ -2,5 +2,6 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web',
             'org.springframework.cloud:spring-cloud-starter-openfeign',
             'org.springframework.cloud:spring-cloud-starter-netflix-ribbon',
-            'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+            'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client',
+            'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
 }

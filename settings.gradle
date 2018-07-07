@@ -5,4 +5,5 @@ include 'microservice-currency-exchange'
 include 'microservice-forex'
 include 'microservice-eurika'
 include 'microservice-zuul'
+include 'microservice-oauth2-as'
 

@@ -9,6 +9,15 @@ public class ExchangeValue {
 
     private BigDecimal conversionMultiple;
 
+    public ExchangeValue() {
+    }
+
+    public ExchangeValue(String from, String to, BigDecimal conversionMultiple) {
+        this.from = from;
+        this.to = to;
+        this.conversionMultiple = conversionMultiple;
+    }
+
     public String getFrom() {
         return from;
     }
