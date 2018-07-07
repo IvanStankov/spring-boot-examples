@@ -5,3 +5,11 @@ eureka.client.service-url.default-zone: http://localhost:8761/eureka
 feign:
   hystrix:
     enabled: true
+
+security:
+  oauth2:
+    client:
+      clientId: ivan
+      clientSecret: ivan-secret
+    resource:
+      tokenInfoUri: http://localhost:8070/oauth/check_token

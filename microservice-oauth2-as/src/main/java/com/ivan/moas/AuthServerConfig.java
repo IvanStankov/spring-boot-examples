@@ -27,7 +27,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
                 .secret("ivan-secret")
                 .authorizedGrantTypes("password")
                 .scopes("read", "write")
-                .resourceIds("mf");
+                .resourceIds("mf", "mce");
     }
 
     @Override
