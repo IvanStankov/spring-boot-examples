@@ -37,7 +37,8 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        security.tokenKeyAccess("permitAll()");
+        security.tokenKeyAccess("permitAll()")
+            .checkTokenAccess("permitAll()");
     }
 
     @Bean
