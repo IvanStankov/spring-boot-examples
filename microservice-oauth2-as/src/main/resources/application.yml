@@ -1,5 +1,5 @@
 spring:
-  aplication:
+  application:
     name: oauth2-as
 
 server:
