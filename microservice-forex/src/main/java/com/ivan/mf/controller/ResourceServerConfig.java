@@ -1,14 +1,19 @@
 package com.ivan.mf.controller;
 
-import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
+import org.springframework.boot.autoconfigure.security.oauth2.resource.JwtAccessTokenConverterConfigurer;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
+import org.springframework.security.oauth2.provider.token.AccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.DefaultAccessTokenConverter;
+
+import java.util.Map;
 
 @Configuration
 @EnableResourceServer
-@EnableOAuth2Sso
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Override
@@ -16,12 +21,20 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         resources.resourceId("mf");
     }
 
-//    @Bean
-//    public ResourceServerTokenServices tokenService() {
-//        final RemoteTokenServices tokenServices = new RemoteTokenServices();
-//        tokenServices.setClientId("ivan");
-//        tokenServices.setClientSecret("ivan-secret");
-//        tokenServices.setCheckTokenEndpointUrl("http://localhost:8070/oauth/check_token");
-//        return tokenServices;
-//    }
+    @Bean
+    public JwtAccessTokenConverterConfigurer jwtAccessTokenConverterConfigurer() {
+        return converter -> converter.setAccessTokenConverter(this.customAccessTokenConverter());
+    }
+
+    @Bean
+    public AccessTokenConverter customAccessTokenConverter() {
+        return new DefaultAccessTokenConverter() {
+            @Override
+            public OAuth2Authentication extractAuthentication(Map<String, ?> map) {
+                final OAuth2Authentication auth = super.extractAuthentication(map);
+                auth.setDetails(map);
+                return auth;
+            }
+        };
+    }
 }

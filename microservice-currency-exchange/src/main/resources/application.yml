@@ -12,4 +12,4 @@ security:
       clientId: ivan
       clientSecret: ivan-secret
     resource:
-      tokenInfoUri: http://localhost:8070/oauth/check_token
+      jwt.key-value: 123

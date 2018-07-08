@@ -1,1 +1,1 @@
-call gradle bootRun --debug-jvm
+call gradle bootRun

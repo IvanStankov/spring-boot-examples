@@ -9,6 +9,8 @@ public class ExchangeValue {
 
     private BigDecimal conversionMultiple;
 
+    private String ogranization;
+
     private String port;
 
     public String getFrom() {
@@ -41,5 +43,13 @@ public class ExchangeValue {
 
     public void setPort(String port) {
         this.port = port;
+    }
+
+    public String getOgranization() {
+        return ogranization;
+    }
+
+    public void setOgranization(String ogranization) {
+        this.ogranization = ogranization;
     }
 }
