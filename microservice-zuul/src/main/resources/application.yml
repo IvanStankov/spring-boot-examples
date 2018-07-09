@@ -23,3 +23,9 @@ zuul:
       path: /currency/**
       serviceId: currency-conversion-service
   sensitiveHeaders: Cookie,Set-Cookie
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
