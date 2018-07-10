@@ -1,2 +1,4 @@
 - Ribbon retry
 - Configuration server (Archaius)
+- Kafka
+- Dynamodb
