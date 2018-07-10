@@ -1,0 +1,11 @@
+bootRun {
+    jvmArgs=["-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8315"]
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-web',
+            'org.springframework.kafka:spring-kafka'
+    //'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client',
+    //'org.springframework.boot:spring-boot-starter-security',
+    //'org.springframework.cloud:spring-cloud-starter-oauth2'
+}

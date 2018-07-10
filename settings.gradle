@@ -6,4 +6,6 @@ include 'microservice-forex'
 include 'microservice-eurika'
 include 'microservice-zuul'
 include 'microservice-oauth2-as'
+include 'microservice-kafka'
+include 'microservice-kafka-consumer'
 

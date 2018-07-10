@@ -1,0 +1,17 @@
+server:
+  port: 8300
+
+spring:
+  application:
+    name: microservice-kafka-consumer
+  kafka:
+    bootstrap-servers: 192.168.99.100:9092
+    topic:
+      messages: first
+    consumer:
+      valueDeserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: com.ivan.mk.controller

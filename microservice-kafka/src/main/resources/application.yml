@@ -1,0 +1,12 @@
+server:
+  port: 8200
+
+spring:
+  application:
+    name: microservice-kafka
+  kafka:
+    bootstrap-servers: 192.168.99.100:9092
+    topic:
+      messages: first
+    producer:
+      valueSerializer: org.springframework.kafka.support.serializer.JsonSerializer
