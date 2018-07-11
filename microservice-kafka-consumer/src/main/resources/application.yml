@@ -9,9 +9,12 @@ spring:
     topic:
       messages: first
     consumer:
-      valueDeserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      valueDeserializer: org.apache.kafka.common.serialization.StringDeserializer
       properties:
         spring:
           json:
             trusted:
               packages: com.ivan.mk.controller
+            add:
+              type:
+                headers: false

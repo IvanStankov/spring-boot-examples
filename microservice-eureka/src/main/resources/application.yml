@@ -1,4 +1,4 @@
-spring.application.name: eurika
+spring.application.name: eureka
 server.port: 8761
 
 eureka.client:

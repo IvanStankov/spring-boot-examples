@@ -5,7 +5,4 @@ bootRun {
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web',
             'org.springframework.kafka:spring-kafka'
-    //'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client',
-    //'org.springframework.boot:spring-boot-starter-security',
-    //'org.springframework.cloud:spring-cloud-starter-oauth2'
 }
