@@ -8,4 +8,6 @@ include 'microservice-zuul'
 include 'microservice-oauth2-as'
 include 'microservice-kafka'
 include 'microservice-kafka-consumer'
+include 'microservice-config'
+include 'todo-list'
 
