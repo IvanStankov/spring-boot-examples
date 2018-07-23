@@ -39,7 +39,7 @@ public class InMemoryTodoListService implements TodoListService {
 
         this.items.put(todoItemId, todoItem);
 
-        logger.debug("Create new todo item: {}", todoItem);
+        logger.info("Create new todo item: {}", todoItem);
         return todoItemId;
     }
 
@@ -53,12 +53,12 @@ public class InMemoryTodoListService implements TodoListService {
             throw new IllegalArgumentException("No todo item found by id " + todoItem.getId());
         }
 
-        logger.debug("Request for update existing item with new values: {}", todoItem);
+        logger.info("Request for update existing item with new values: {}", todoItem);
 
         existingItem.setName(todoItem.getName());
         existingItem.setDescription(todoItem.getDescription());
 
-        logger.debug("Existing item has been updated: {}", existingItem);
+        logger.info("Existing item has been updated: {}", existingItem);
     }
 
     @Override
@@ -74,7 +74,15 @@ public class InMemoryTodoListService implements TodoListService {
 
     @Override
     public void removeItem(TodoItemId itemId) {
+        final TodoItem todoItem = this.items.get(itemId);
 
+        if (todoItem == null) {
+            throw new IllegalArgumentException("No todo item found by id " + itemId);
+        }
+
+        this.items.remove(itemId);
+
+        logger.info("Deleted item {}", itemId);
     }
 
     private TodoItemId generateItemId() {

@@ -35,4 +35,9 @@ public class TodoListController {
         this.todoListService.updateItem(todoItem);
     }
 
+    @DeleteMapping("/{itemId}")
+    public void deleteItem(@PathVariable final Long itemId) {
+        this.todoListService.removeItem(new TodoItemId(itemId));
+    }
+
 }
