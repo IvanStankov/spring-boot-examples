@@ -3,5 +3,7 @@ bootRun {
 }
 
 dependencies {
-    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-web',
+            'com.amazonaws:aws-java-sdk-dynamodb:1.11.372',
+            'com.github.derjust:spring-data-dynamodb:5.0.2'
 }

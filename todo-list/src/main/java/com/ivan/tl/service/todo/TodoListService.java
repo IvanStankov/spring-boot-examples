@@ -1,4 +1,4 @@
-package com.ivan.tl.service;
+package com.ivan.tl.service.todo;
 
 import com.ivan.tl.model.TodoItem;
 import com.ivan.tl.model.TodoItemId;

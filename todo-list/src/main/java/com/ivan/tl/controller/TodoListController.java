@@ -3,7 +3,7 @@ package com.ivan.tl.controller;
 import com.ivan.tl.model.TodoItem;
 import com.ivan.tl.model.TodoItemId;
 import com.ivan.tl.model.TodoItems;
-import com.ivan.tl.service.TodoListService;
+import com.ivan.tl.service.todo.TodoListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
