@@ -1,5 +1,6 @@
 package com.ivan.tl.service.todo.dynamodb;
 
+import com.ivan.tl.meta.DynamoDBProfile;
 import com.ivan.tl.model.TodoItem;
 import com.ivan.tl.model.TodoItemId;
 import com.ivan.tl.service.todo.TodoListService;
@@ -7,7 +8,6 @@ import com.ivan.tl.service.todo.dynamodb.entity.TodoItemEntity;
 import com.ivan.tl.service.todo.dynamodb.repository.EntityIdGeneratorRepository;
 import com.ivan.tl.service.todo.dynamodb.repository.TodoItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
-@Profile("DynamoDB")
+@DynamoDBProfile
 public class DynamoDbTodoListService implements TodoListService {
 
     @Autowired

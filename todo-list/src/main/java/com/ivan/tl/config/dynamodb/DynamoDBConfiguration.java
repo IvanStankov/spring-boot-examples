@@ -6,15 +6,15 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.client.builder.AwsClientBuilder.EndpointConfiguration;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
+import com.ivan.tl.meta.DynamoDBProfile;
 import org.socialsignin.spring.data.dynamodb.repository.config.EnableDynamoDBRepositories;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 
 @Configuration
 @EnableDynamoDBRepositories(basePackages = "com.ivan.tl.service")
-@Profile("DynamoDB")
+@DynamoDBProfile
 public class DynamoDBConfiguration {
 
     @Value("${dynamodb.url}")
