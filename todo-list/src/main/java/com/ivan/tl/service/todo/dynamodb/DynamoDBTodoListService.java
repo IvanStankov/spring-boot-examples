@@ -7,7 +7,6 @@ import com.ivan.tl.service.todo.TodoListService;
 import com.ivan.tl.service.todo.dynamodb.entity.TodoItemEntity;
 import com.ivan.tl.service.todo.dynamodb.repository.EntityIdGeneratorRepository;
 import com.ivan.tl.service.todo.dynamodb.repository.TodoItemRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,13 +15,15 @@ import java.util.stream.StreamSupport;
 
 @Service
 @DynamoDBProfile
-public class DynamoDbTodoListService implements TodoListService {
+public class DynamoDBTodoListService implements TodoListService {
 
-    @Autowired
-    private TodoItemRepository todoItemRepository;
+    private final TodoItemRepository todoItemRepository;
+    private final EntityIdGeneratorRepository entityIdGeneratorRepository;
 
-    @Autowired
-    private EntityIdGeneratorRepository entityIdGeneratorRepository;
+    public DynamoDBTodoListService(TodoItemRepository todoItemRepository, EntityIdGeneratorRepository entityIdGeneratorRepository) {
+        this.todoItemRepository = todoItemRepository;
+        this.entityIdGeneratorRepository = entityIdGeneratorRepository;
+    }
 
     @Override
     public List<TodoItem> getAllItems() {
