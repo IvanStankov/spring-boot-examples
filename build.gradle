@@ -34,7 +34,8 @@ subprojects {
     dependencies {
         compile 'org.slf4j:slf4j-api:1.7.21',
                 'org.springframework.boot:spring-boot-devtools',
-                'org.springframework.boot:spring-boot-actuator'
+                'org.springframework.boot:spring-boot-actuator',
+                'com.google.guava:guava:25.1-jre'
         testCompile 'junit:junit:4.12'
     }
 }

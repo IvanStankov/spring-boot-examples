@@ -1,4 +1,4 @@
-package com.ivan.tl.service.todo.repository;
+package com.ivan.tl.service.todo.dynamodb.entity;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
