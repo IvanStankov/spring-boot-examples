@@ -4,6 +4,3 @@ server:
 spring:
   application:
     name: todo-list
-
-dynamodb:
-  url: http://192.168.99.100:7500
