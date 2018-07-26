@@ -62,4 +62,14 @@ public class TodoItemEntity {
     public void setDone(boolean done) {
         this.done = done;
     }
+
+    @Override
+    public String toString() {
+        return "TodoItemEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", done=" + done +
+                '}';
+    }
 }

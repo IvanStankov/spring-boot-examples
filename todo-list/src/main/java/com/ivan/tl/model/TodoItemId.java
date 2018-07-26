@@ -12,6 +12,10 @@ public class TodoItemId {
         return id;
     }
 
+    public static boolean isNotEmpty(final TodoItemId itemId) {
+        return itemId != null && itemId.getId() != null;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
