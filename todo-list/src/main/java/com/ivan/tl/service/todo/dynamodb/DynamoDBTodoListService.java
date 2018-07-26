@@ -32,7 +32,7 @@ public class DynamoDBTodoListService implements TodoListService {
     @Override
     public List<TodoItem> getAllItems() {
         return StreamSupport.stream(this.todoItemRepository.findAll().spliterator(), false)
-                    .map(entity -> new TodoItem(entity.getId(), entity.getName(), entity.getDescription()))
+                    .map(entity -> new TodoItem(entity.getId(), entity.getName(), entity.getDescription(), entity.isDone()))
                     .collect(Collectors.toList());
     }
 
@@ -62,6 +62,7 @@ public class DynamoDBTodoListService implements TodoListService {
                 .orElseThrow(IllegalStateException::new);
         savedItem.setName(todoItem.getName());
         savedItem.setDescription(todoItem.getDescription());
+        savedItem.setDone(todoItem.isDone());
 
         this.todoItemRepository.save(savedItem);
 
@@ -75,7 +76,7 @@ public class DynamoDBTodoListService implements TodoListService {
         final TodoItemEntity todoItemEntity = this.todoItemRepository.findById(itemId.getId())
                 .orElseThrow(IllegalStateException::new);
 
-        return new TodoItem(todoItemEntity.getId(), todoItemEntity.getName(), todoItemEntity.getDescription());
+        return new TodoItem(todoItemEntity.getId(), todoItemEntity.getName(), todoItemEntity.getDescription(), todoItemEntity.isDone());
     }
 
     @Override
@@ -84,5 +85,18 @@ public class DynamoDBTodoListService implements TodoListService {
 
         todoItemRepository.deleteById(itemId.getId());
         logger.info("Todo item has been deleted - {}", itemId);
+    }
+
+    @Override
+    public void toggleStatus(final TodoItemId itemId) {
+        Assert.isTrue(TodoItemId.isNotEmpty(itemId), "Todo item id must not be null");
+
+        final TodoItemEntity todoItemEntity = todoItemRepository.findById(itemId.getId())
+                .orElseThrow(IllegalArgumentException::new);
+
+        todoItemEntity.setDone(!todoItemEntity.isDone());
+        this.todoItemRepository.save(todoItemEntity);
+
+        logger.info("Todo item({}) status has been changed to {}", itemId, todoItemEntity.isDone());
     }
 }

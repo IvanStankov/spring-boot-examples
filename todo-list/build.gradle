@@ -7,7 +7,8 @@ bootRun {
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web',
             'com.amazonaws:aws-java-sdk-dynamodb:1.11.372',
-            'com.github.derjust:spring-data-dynamodb:5.0.2'
+            'com.github.derjust:spring-data-dynamodb:5.0.2',
+            'org.hibernate.validator:hibernate-validator'
 
     testCompile 'org.spockframework:spock-core:1.1-groovy-2.4',
             'net.bytebuddy:byte-buddy:1.8.14',

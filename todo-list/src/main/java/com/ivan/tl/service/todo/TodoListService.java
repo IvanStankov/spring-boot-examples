@@ -17,4 +17,6 @@ public interface TodoListService {
 
     void removeItem(TodoItemId itemId);
 
+    void toggleStatus(TodoItemId itemId);
+
 }

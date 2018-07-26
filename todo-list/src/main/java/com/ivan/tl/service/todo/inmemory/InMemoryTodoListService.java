@@ -1,7 +1,8 @@
-package com.ivan.tl.service.todo;
+package com.ivan.tl.service.todo.inmemory;
 
 import com.ivan.tl.model.TodoItem;
 import com.ivan.tl.model.TodoItemId;
+import com.ivan.tl.service.todo.TodoListService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Profile;
@@ -88,6 +89,19 @@ public class InMemoryTodoListService implements TodoListService {
         this.items.remove(itemId);
 
         logger.info("Deleted item {}", itemId);
+    }
+
+    @Override
+    public void toggleStatus(TodoItemId itemId) {
+        final TodoItem todoItem = this.items.get(itemId);
+
+        if (todoItem == null) {
+            throw new IllegalArgumentException("No todo item found by id " + itemId);
+        }
+
+        todoItem.setDone(!todoItem.isDone());
+
+        logger.info("Changed status of item {} to {}", itemId, todoItem.isDone());
     }
 
     private TodoItemId generateItemId() {

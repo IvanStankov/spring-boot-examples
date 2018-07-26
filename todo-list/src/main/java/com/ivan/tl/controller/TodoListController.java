@@ -7,6 +7,8 @@ import com.ivan.tl.service.todo.TodoListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/todo-list")
 public class TodoListController {
@@ -25,12 +27,12 @@ public class TodoListController {
     }
 
     @PostMapping
-    public TodoItemId createItem(@RequestBody final TodoItem todoItem) {
+    public TodoItemId createItem(@RequestBody @Valid final TodoItem todoItem) {
         return this.todoListService.createItem(todoItem);
     }
 
     @PutMapping("/{itemId}")
-    public void updateItem(@PathVariable final Long itemId, @RequestBody final TodoItem todoItem) {
+    public void updateItem(@PathVariable final Long itemId, @RequestBody @Valid final TodoItem todoItem) {
         todoItem.setId(itemId);
         this.todoListService.updateItem(todoItem);
     }
