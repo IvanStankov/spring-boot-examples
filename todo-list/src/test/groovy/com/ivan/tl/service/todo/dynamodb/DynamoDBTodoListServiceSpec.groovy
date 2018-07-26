@@ -1,4 +1,5 @@
 import com.google.common.collect.ImmutableList
+import com.ivan.tl.model.TodoItem
 import com.ivan.tl.service.todo.dynamodb.DynamoDBTodoListService
 import com.ivan.tl.service.todo.dynamodb.entity.TodoItemEntity
 import com.ivan.tl.service.todo.dynamodb.repository.EntityIdGeneratorRepository
@@ -12,8 +13,8 @@ public class DynamoDBTodoListServiceSpec extends spock.lang.Specification {
     private DynamoDBTodoListService service;
 
     def setup() {
-        todoItemRepository = Stub(TodoItemRepository.class);
-        entityIdGeneratorRepository = Stub(EntityIdGeneratorRepository.class);
+        todoItemRepository = Mock(TodoItemRepository.class);
+        entityIdGeneratorRepository = Mock(EntityIdGeneratorRepository.class);
         service = new DynamoDBTodoListService(todoItemRepository, entityIdGeneratorRepository);
     }
 
@@ -31,6 +32,39 @@ public class DynamoDBTodoListServiceSpec extends spock.lang.Specification {
         item.getId() == entity.getId();
         item.getName() == entity.getName();
         item.getDescription() == entity.getDescription();
+    }
+
+    def "getAllItems when there are no items returns empty list"() {
+        given:
+        todoItemRepository.findAll() >> Collections.emptyList();
+
+        when:
+        def result = service.getAllItems();
+
+        then:
+        result != null;
+        result.size() == 0;
+    }
+
+    def "createItem creates item and returns item id"() {
+        given:
+        entityIdGeneratorRepository.incrementCounter(TodoItemEntity.TABLE_NAME) >> 4;
+
+        def newItem = new TodoItem("Test", "Test description");
+
+        when:
+        def itemId = service.createItem(newItem);
+
+        then:
+        itemId != null;
+        itemId.getId() == 4;
+
+        1 * todoItemRepository.save({item ->
+            item.getId() == 5;
+            item.getName() == newItem.getName();
+            item.getDescription() == newItem.getDescription();
+            item.isDone() == false;
+        })
     }
 
 }

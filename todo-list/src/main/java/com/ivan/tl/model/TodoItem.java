@@ -6,6 +6,11 @@ public class TodoItem {
     private String name;
     private String description;
 
+    public TodoItem(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
     public TodoItem(Long id, String name, String description) {
         this.id = id;
         this.name = name;
