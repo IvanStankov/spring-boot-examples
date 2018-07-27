@@ -1,11 +1,15 @@
 import com.google.common.collect.ImmutableList
 import com.ivan.tl.model.TodoItem
+import com.ivan.tl.model.TodoItemId
+import com.ivan.tl.model.TodoItemStatus
 import com.ivan.tl.service.todo.dynamodb.DynamoDBTodoListService
 import com.ivan.tl.service.todo.dynamodb.entity.TodoItemEntity
 import com.ivan.tl.service.todo.dynamodb.repository.EntityIdGeneratorRepository
 import com.ivan.tl.service.todo.dynamodb.repository.TodoItemRepository
+import spock.lang.Specification
+import spock.lang.Unroll
 
-public class DynamoDBTodoListServiceSpec extends spock.lang.Specification {
+public class DynamoDBTodoListServiceSpec extends Specification {
 
     private TodoItemRepository todoItemRepository;
     private EntityIdGeneratorRepository entityIdGeneratorRepository;
@@ -59,12 +63,32 @@ public class DynamoDBTodoListServiceSpec extends spock.lang.Specification {
         itemId != null;
         itemId.getId() == 4;
 
-        1 * todoItemRepository.save({item ->
+        1 * todoItemRepository.save({ item ->
             item.getId() == 5;
             item.getName() == newItem.getName();
             item.getDescription() == newItem.getDescription();
             item.isDone() == false;
         })
+    }
+
+    @Unroll
+    def "toggleStatus negates the previous status #param"() {
+        given:
+        def itemId = new TodoItemId(15L)
+        todoItemRepository.findById(itemId.getId()) >> Optional.of(new TodoItemEntity(itemId.getId(), "Name", "Descr", param))
+
+        when:
+        service.updateStatus(itemId, new TodoItemStatus(!param))
+
+        then:
+        1 * todoItemRepository.save({ entity ->
+            entity.isDone() == expected
+        })
+
+        where:
+        param | expected
+        true  | false
+        false | true
     }
 
 }

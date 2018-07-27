@@ -2,6 +2,7 @@ package com.ivan.tl.service.todo.inmemory;
 
 import com.ivan.tl.model.TodoItem;
 import com.ivan.tl.model.TodoItemId;
+import com.ivan.tl.model.TodoItemStatus;
 import com.ivan.tl.service.todo.TodoListService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -92,14 +93,14 @@ public class InMemoryTodoListService implements TodoListService {
     }
 
     @Override
-    public void toggleStatus(TodoItemId itemId) {
+    public void updateStatus(TodoItemId itemId, TodoItemStatus status) {
         final TodoItem todoItem = this.items.get(itemId);
 
         if (todoItem == null) {
             throw new IllegalArgumentException("No todo item found by id " + itemId);
         }
 
-        todoItem.setDone(!todoItem.isDone());
+        todoItem.setDone(status.isDone());
 
         logger.info("Changed status of item {} to {}", itemId, todoItem.isDone());
     }

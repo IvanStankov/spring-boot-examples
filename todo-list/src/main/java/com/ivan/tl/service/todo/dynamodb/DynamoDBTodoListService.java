@@ -3,6 +3,7 @@ package com.ivan.tl.service.todo.dynamodb;
 import com.ivan.tl.meta.DynamoDBProfile;
 import com.ivan.tl.model.TodoItem;
 import com.ivan.tl.model.TodoItemId;
+import com.ivan.tl.model.TodoItemStatus;
 import com.ivan.tl.service.todo.TodoListService;
 import com.ivan.tl.service.todo.dynamodb.entity.TodoItemEntity;
 import com.ivan.tl.service.todo.dynamodb.repository.EntityIdGeneratorRepository;
@@ -88,13 +89,13 @@ public class DynamoDBTodoListService implements TodoListService {
     }
 
     @Override
-    public void toggleStatus(final TodoItemId itemId) {
+    public void updateStatus(final TodoItemId itemId, TodoItemStatus status) {
         Assert.isTrue(TodoItemId.isNotEmpty(itemId), "Todo item id must not be null");
 
         final TodoItemEntity todoItemEntity = todoItemRepository.findById(itemId.getId())
                 .orElseThrow(IllegalArgumentException::new);
 
-        todoItemEntity.setDone(!todoItemEntity.isDone());
+        todoItemEntity.setDone(status.isDone());
         this.todoItemRepository.save(todoItemEntity);
 
         logger.info("Todo item({}) status has been changed to {}", itemId, todoItemEntity.isDone());
