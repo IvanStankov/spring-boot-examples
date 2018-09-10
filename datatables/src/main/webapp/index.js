@@ -1,29 +1,30 @@
 $(function() {
 
-    var dt = $("#dt").dataTable( {
-        "bProcessing": true,
-        "bServerSide": true,
-        "sScrollX": "100%",
-        "sScrollXInner": "150%",
-        "bScrollCollapse": true,
-        "aoColumnDefs": [ {
-            "mRender": function() {
+    var dt = $("#dt").DataTable( {
+        "processing": true,
+        "serverSide": true,
+        "scrollX": "100%",
+        "scrollXInner": "150%",
+        "scrollCollapse": false,
+        fixedColumns: {
+            "leftColumns": 3
+        },
+        "columnDefs": [ {
+            "render": function() {
                 return "<input type='checkbox' class='chk'>"
             },
-            "aTargets": [0]
+            "targets": [0]
         } ],
-        "sAjaxSource": "http://localhost:8070/datatables/documents"
+        "ajaxSource": "http://localhost:8070/datatables/documents"
     });
 
-    new $.fn.dataTable.FixedColumns(dt, {
-        "iLeftColumns": 3,
-        "iLeftWidth": 350
-    });
+//    new $.fn.dataTable.FixedColumns(dt, {
+//    });
 
     setInterval(function() {
         console.log('Interval');
-        dt.fnDraw(false);
-    }, 10 * 1000);
+        dt.draw(false);
+    }, 2 * 1000);
 
     window.dt = dt;
 })
