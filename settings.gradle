@@ -10,4 +10,5 @@ include 'microservice-kafka'
 include 'microservice-kafka-consumer'
 include 'microservice-config'
 include 'todo-list'
+include 'datatables'
 
