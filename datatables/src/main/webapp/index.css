@@ -2,10 +2,6 @@
     box-sizing: border-box;
 }
 
-.main-content {
-    width: 900px;
-}
-
 table, tr, th, td {
     border: 1px solid black;
     border-collapse: collapse;
